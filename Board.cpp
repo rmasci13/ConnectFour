@@ -18,10 +18,12 @@ void Board::render() {
 	cout << "|-------------------------------------------------------|" << endl;
 }
 
-void Board::changeChecker(int column, char pieceColor) {
+void Board::changeChecker(int column) {
+	static char val = 'B';
 	column--;
 	int row = findRowPosition(column);
-	mBoard.at(row).at(column).setPieceVal(pieceColor);
+	mBoard.at(row).at(column).setPieceVal(val);
+	val = val == 'B' ? 'R' : 'B';
 }
 
 int Board::findRowPosition(int column) {
