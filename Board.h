@@ -10,7 +10,7 @@ class Board
 public:
 	Board() : mBoard(Board::NUM_ROWS, vector<Checker>(Board::NUM_COLS)) {};
 	void render();
-	void changeChecker(int column, char pieceColor);
+	void changeChecker(int column);
 private:
 	const int NUM_COLS = 7;
 	const int NUM_ROWS = 6;
