@@ -11,6 +11,7 @@ public:
 	Board() : mBoard(Board::NUM_ROWS, vector<Checker>(Board::NUM_COLS)) {};
 	void render();
 	void changeChecker(int column);
+	bool checkColumnFull(int column);
 private:
 	const int NUM_COLS = 7;
 	const int NUM_ROWS = 6;
@@ -18,5 +19,6 @@ private:
 	vector<vector<Checker>> mBoard;
 
 	int findRowPosition(int column);
+	
 };
 

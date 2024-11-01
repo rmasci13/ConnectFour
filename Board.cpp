@@ -20,7 +20,6 @@ void Board::render() {
 
 void Board::changeChecker(int column) {
 	static char val = 'B';
-	column--;
 	int row = findRowPosition(column);
 	mBoard.at(row).at(column).setPieceVal(val);
 	val = val == 'B' ? 'R' : 'B';
@@ -32,4 +31,8 @@ int Board::findRowPosition(int column) {
 			return i;
 		}
 	}
+}
+
+bool Board::checkColumnFull(int column) {
+	return mBoard.at(0).at(column).getPieceVal() == ' ' ? false : true;
 }
