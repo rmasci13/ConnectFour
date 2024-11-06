@@ -137,6 +137,10 @@
     <ClInclude Include="Checker.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="FillBottomRow.txt" />
+    <Text Include="x64\Debug\TryOverflowColumn.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
