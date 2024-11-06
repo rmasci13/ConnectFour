@@ -138,7 +138,6 @@
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="FillBottomRow.txt" />
     <Text Include="Testing\FillBoard.txt" />
     <Text Include="Testing\FillBottomRow.txt" />
     <Text Include="Testing\TryOverflowColumn.txt" />
