@@ -139,9 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="FillBottomRow.txt" />
-    <Text Include="x64\Debug\Testing\FillBoard.txt" />
-    <Text Include="x64\Debug\Testing\FillBottomRow.txt" />
-    <Text Include="x64\Debug\Testing\TryOverflowColumn.txt" />
+    <Text Include="Testing\FillBoard.txt" />
+    <Text Include="Testing\FillBottomRow.txt" />
+    <Text Include="Testing\TryOverflowColumn.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
