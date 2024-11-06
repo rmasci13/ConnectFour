@@ -140,6 +140,7 @@
   <ItemGroup>
     <Text Include="Testing\FillBoard.txt" />
     <Text Include="Testing\FillBottomRow.txt" />
+    <Text Include="Testing\TestInvalidInput.txt" />
     <Text Include="Testing\TryOverflowColumn.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
