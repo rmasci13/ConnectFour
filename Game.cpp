@@ -44,7 +44,7 @@ char Game::getUserInput() {
 			cout << "Invalid column entered. Try again" << endl;
 		}
 		else {
-			tempInput = input - '1'; //change it to int index number
+			tempInput = input - '1'; //change it to int index number while retaining char in original variable
 			if (!myBoard.checkColumnFull(tempInput)) { //if column not full return input
 				blackTurn = !blackTurn;
 				return input;
