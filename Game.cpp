@@ -7,6 +7,7 @@ using namespace std;
 void Game::playGame() {
 	bool gameOver = false;
 	while (!gameOver) {
+		static bool blackTurn = true;
 		char input = Game::getUserInput();
 		if (input == 'q') {
 			gameOver = true;
@@ -14,8 +15,20 @@ void Game::playGame() {
 		}
 		else {
 			int column = input - '1'; //convert the char column entered into int index number 
+			int row = myBoard.findRowPosition(column);
 			myBoard.changeChecker(column);
 			myBoard.render();
+			if (myBoard.checkWin(column, row)) {
+				gameOver = true;
+				if (blackTurn) {
+					cout << "CONGRATULATIONS!! Black WINS!!" << endl;
+				}
+				else {
+					cout << "CONGRATULATIONS!! Red WINS!!" << endl;
+				}
+				break;
+			}
+			blackTurn = !blackTurn;
 		}
 	}
 }
@@ -55,3 +68,4 @@ char Game::getUserInput() {
 		}
 	}
 }
+

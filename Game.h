@@ -10,9 +10,5 @@ private:
 	Board myBoard;
 
 	char getUserInput();
-	/*
-	* need to do:
-	*	checkWin()
-	*/
 };
 
