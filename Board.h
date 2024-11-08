@@ -13,8 +13,9 @@ public:
 
 	void render(); //draw the board
 	void changeChecker(int column); //Place piece
-	bool checkColumnFull(int column); //Ensure the column has an open spot
+	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int findRowPosition(int column); //Find how deep the piece needs to fall
+	bool checkBoardFull();
 
 	bool checkWin(int column, int row);
 

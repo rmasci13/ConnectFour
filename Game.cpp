@@ -18,6 +18,11 @@ void Game::playGame() {
 			int row = myBoard.findRowPosition(column);
 			myBoard.changeChecker(column);
 			myBoard.render();
+			if (myBoard.checkBoardFull()) {
+				gameOver = true;
+				cout << "The board is full. The game is a draw." << endl;
+				break;
+			}
 			if (myBoard.checkWin(column, row)) {
 				gameOver = true;
 				if (blackTurn) {
@@ -58,7 +63,7 @@ char Game::getUserInput() {
 		}
 		else {
 			tempInput = input - '1'; //change it to int index number while retaining char in original variable
-			if (!myBoard.checkColumnFull(tempInput)) { //if column not full return input
+			if (myBoard.checkAvailableSpace(tempInput)) { //if available space return input
 				blackTurn = !blackTurn;
 				return input;
 			}

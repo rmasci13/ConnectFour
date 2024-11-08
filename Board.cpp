@@ -38,11 +38,20 @@ int Board::findRowPosition(int column) {
 	return -1;
 }
 
-bool Board::checkColumnFull(int column) {
-	//Used in Game to ensure column has an open space
-	return mBoard.at(0).at(column).getPieceVal() == ' ' ? false : true;
+bool Board::checkAvailableSpace(int column) {
+	//Used in Game to ensure column has an open space. Returns true if top space is still blank
+	return mBoard.at(0).at(column).getPieceVal() == ' ' ? true : false;
 }
 
+bool Board::checkBoardFull() {
+	for (int i = 0; i < Board::NUM_COLS; i++) {
+		//Kick out if any column has an available space. 
+		if (checkAvailableSpace(i)) {
+			return false;
+		}
+	}
+	return true;
+}
 
 bool Board::checkWin(int column, int row) {
 	if (checkHorizontal(column, row)) {
@@ -66,20 +75,21 @@ bool Board::checkHorizontal(int column, int row) {
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (mBoard.at(row).at(column + 1).getPieceVal() == currentPiece) {
+	//First expression makes sure not checking past vector bounds
+	if (column + 1 < Board::NUM_COLS && mBoard.at(row).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
-		if (mBoard.at(row).at(column + 2).getPieceVal() == currentPiece) {
+		if (column + 2 < Board::NUM_COLS && mBoard.at(row).at(column + 2).getPieceVal() == currentPiece) {
 			right++;
-			if (mBoard.at(row).at(column + 3).getPieceVal() == currentPiece) {
+			if (column + 3 < Board::NUM_COLS && mBoard.at(row).at(column + 3).getPieceVal() == currentPiece) {
 				right++;
 			}
 		}
 	}
-	if (mBoard.at(row).at(column - 1).getPieceVal() == currentPiece) {
+	if (column - 1 >= 0 && mBoard.at(row).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
-		if (mBoard.at(row).at(column - 2).getPieceVal() == currentPiece) {
+		if (column - 2 >= 0 && mBoard.at(row).at(column - 2).getPieceVal() == currentPiece) {
 			left++;
-			if (mBoard.at(row).at(column - 1).getPieceVal() == currentPiece) {
+			if (column - 3 >= 0 && mBoard.at(row).at(column - 3).getPieceVal() == currentPiece) {
 				left++;
 			}
 		}
@@ -98,20 +108,21 @@ bool Board::checkVertical(int column, int row) {
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (mBoard.at(row + 1).at(column).getPieceVal() == currentPiece) {
+	//First expression makes sure not checking past vector bounds
+	if (row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column).getPieceVal() == currentPiece) {
 		right++;
-		if (mBoard.at(row + 2).at(column).getPieceVal() == currentPiece) {
+		if (row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column).getPieceVal() == currentPiece) {
 			right++;
-			if (mBoard.at(row + 3).at(column).getPieceVal() == currentPiece) {
+			if (row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column).getPieceVal() == currentPiece) {
 				right++;
 			}
 		}
 	}
-	if (mBoard.at(row - 1).at(column).getPieceVal() == currentPiece) {
+	if (row - 1 >= 0 && mBoard.at(row - 1).at(column).getPieceVal() == currentPiece) {
 		left++;
-		if (mBoard.at(row - 2).at(column).getPieceVal() == currentPiece) {
+		if (row - 2 >= 0 && mBoard.at(row - 2).at(column).getPieceVal() == currentPiece) {
 			left++;
-			if (mBoard.at(row - 3).at(column).getPieceVal() == currentPiece) {
+			if (row - 3 >= 0 && mBoard.at(row - 3).at(column).getPieceVal() == currentPiece) {
 				left++;
 			}
 		}
@@ -130,20 +141,20 @@ bool Board::checkDiagonal1(int column, int row) {
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
+	if (column + 1 > Board::NUM_COLS && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
-		if (mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
+		if (column + 2 > Board::NUM_COLS && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
 			right++;
-			if (mBoard.at(row + 3).at(column + 3).getPieceVal() == currentPiece) {
+			if (column + 3 > Board::NUM_COLS && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column + 3).getPieceVal() == currentPiece) {
 				right++;
 			}
 		}
 	}
-	if (mBoard.at(row - 1).at(column - 1).getPieceVal() == currentPiece) {
+	if (column - 1 >= 0 && row - 1 >= 0 && mBoard.at(row - 1).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
-		if (mBoard.at(row - 2).at(column - 2).getPieceVal() == currentPiece) {
+		if (column - 2 >= 0 && row - 2 >= 0 && mBoard.at(row - 2).at(column - 2).getPieceVal() == currentPiece) {
 			left++;
-			if (mBoard.at(row - 3).at(column - 3).getPieceVal() == currentPiece) {
+			if (column - 3 >= 0 && row - 3 >= 0 && mBoard.at(row - 3).at(column - 3).getPieceVal() == currentPiece) {
 				left++;
 			}
 		}
@@ -162,20 +173,20 @@ bool Board::checkDiagonal2(int column, int row) {
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
+	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
 		right++;
-		if (mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
+		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
 			right++;
-			if (mBoard.at(row + 3).at(column - 3).getPieceVal() == currentPiece) {
+			if (column - 3 >= 0 && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column - 3).getPieceVal() == currentPiece) {
 				right++;
 			}
 		}
 	}
-	if (mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
+	if (column + 1 < Board::NUM_COLS && row - 1 >= 0 && mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
 		left++;
-		if (mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {
+		if (column + 2 < Board::NUM_COLS && row - 2 >= 0 && mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {
 			left++;
-			if (mBoard.at(row - 3).at(column + 3).getPieceVal() == currentPiece) {
+			if (column + 3 < Board::NUM_COLS && row - 3 >= 0 && mBoard.at(row - 3).at(column + 3).getPieceVal() == currentPiece) {
 				left++;
 			}
 		}
