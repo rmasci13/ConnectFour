@@ -15,5 +15,6 @@ void Checker::setPieceVal(char val) {
 }
 
 void Checker::render() {
+	//Draw the checker using its member pieceVal
 	cout << " (" << pieceVal << ") ";
 }

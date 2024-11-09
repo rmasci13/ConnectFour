@@ -15,17 +15,19 @@ public:
 	void changeChecker(int column); //Place piece
 	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int findRowPosition(int column); //Find how deep the piece needs to fall
-	bool checkBoardFull();
+	bool checkBoardFull(); //Check to see if board is full resulting in draw
 
-	bool checkWin(int column, int row);
+	bool checkWin(int column, int row); //Handles checking each of the 4 win conditions
 
 
 private:
+	//Private constants establishing rows and columns in the board. Changing these here allows for different board configurations.
 	const int NUM_COLS = 7;
 	const int NUM_ROWS = 6;
 	
-	vector<vector<Checker>> mBoard;
+	vector<vector<Checker>> mBoard; //2D vector of checker pieces
 
+	//Private variables to check specific win conditions
 	bool checkHorizontal(int column, int row);
 	bool checkVertical(int column, int row);
 	bool checkDiagonal1(int column, int row);

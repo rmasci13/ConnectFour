@@ -5,10 +5,10 @@
 class Game
 {
 public:
-	void playGame();
+	void playGame(); //Handles running the game
 private:
 	Board myBoard;
 
-	char getUserInput();
+	char getUserInput(); //Handles getting user input ensuring its valid input and calls board function to ensure column has open space
 };
 

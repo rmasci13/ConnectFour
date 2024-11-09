@@ -22,14 +22,14 @@ void Board::render() {
 }
 
 void Board::changeChecker(int column) {
-	//Initialize to B as black goes first. Static so doesn't re-initialize every call
-	static char val = 'B';
+	static char val = 'B'; //Initialize to B as black goes first. Static so doesn't re-initialize every call
 	int row = findRowPosition(column); //Find first open space in column
-	mBoard.at(row).at(column).setPieceVal(val);
+	mBoard.at(row).at(column).setPieceVal(val); //Set value for checker at specific location
 	val = val == 'B' ? 'R' : 'B'; //Change to opposite piece after placed
 }
 
 int Board::findRowPosition(int column) {
+	//Another function already handled checking if the column is full. If it was full, this function wouldn't have even been called as user reprompted for input.
 	for (int i = NUM_ROWS - 1; i >= 0; i--) {
 		if (mBoard.at(i).at(column).getPieceVal() == ' ') {
 			return i;
@@ -46,27 +46,16 @@ bool Board::checkAvailableSpace(int column) {
 bool Board::checkBoardFull() {
 	for (int i = 0; i < Board::NUM_COLS; i++) {
 		//Kick out if any column has an available space. 
-		if (checkAvailableSpace(i)) {
-			return false;
+		if (checkAvailableSpace(i)) { //This function returns true if top piece in column is blank
+			return false; //Getting here means there's an open space somewhere, therefore board not full
 		}
 	}
 	return true;
 }
 
 bool Board::checkWin(int column, int row) {
-	if (checkHorizontal(column, row)) {
-		return true;
-	}
-	else if (checkVertical(column, row)) {
-		return true;
-	}
-	else if (checkDiagonal1(column, row)) {
-		return true;
-	}
-	else if (checkDiagonal2(column, row)) {
-		return true;
-	}
-	return false;
+	//Check if any of the win checks returns true
+	return (checkHorizontal(column, row) || checkVertical(column, row) || checkDiagonal1(column, row) || checkDiagonal2(column, row));
 }
 
 bool Board::checkHorizontal(int column, int row) {
@@ -74,10 +63,12 @@ bool Board::checkHorizontal(int column, int row) {
 	int right = 0;
 	int total = 1;
 
-	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//First expression makes sure not checking past vector bounds
+	char currentPiece = mBoard.at(row).at(column).getPieceVal(); //Value of the most recently placed checker
+
+	//First expression makes sure not checking past vector bounds, second checks if adjacent checker same as placed
 	if (column + 1 < Board::NUM_COLS && mBoard.at(row).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
+		//Only continues checking next piece if adjacent one was the same
 		if (column + 2 < Board::NUM_COLS && mBoard.at(row).at(column + 2).getPieceVal() == currentPiece) {
 			right++;
 			if (column + 3 < Board::NUM_COLS && mBoard.at(row).at(column + 3).getPieceVal() == currentPiece) {
@@ -85,6 +76,7 @@ bool Board::checkHorizontal(int column, int row) {
 			}
 		}
 	}
+	//Same checks as above but to left
 	if (column - 1 >= 0 && mBoard.at(row).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column - 2 >= 0 && mBoard.at(row).at(column - 2).getPieceVal() == currentPiece) {
@@ -103,12 +95,12 @@ bool Board::checkHorizontal(int column, int row) {
 }
 
 bool Board::checkVertical(int column, int row) {
+	//Same ideas as notes describe in checkHorizontal, but for verticals
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//First expression makes sure not checking past vector bounds
 	if (row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column).getPieceVal() == currentPiece) {
 		right++;
 		if (row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column).getPieceVal() == currentPiece) {
@@ -136,11 +128,13 @@ bool Board::checkVertical(int column, int row) {
 }
 
 bool Board::checkDiagonal1(int column, int row) {
+	//Same ideas as notes describe in checkHorizontal, but for diagonally up-right and down-left
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
+	//Check up-right
 	if (column + 1 > Board::NUM_COLS && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
 		if (column + 2 > Board::NUM_COLS && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
@@ -150,6 +144,7 @@ bool Board::checkDiagonal1(int column, int row) {
 			}
 		}
 	}
+	//Check down-left
 	if (column - 1 >= 0 && row - 1 >= 0 && mBoard.at(row - 1).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column - 2 >= 0 && row - 2 >= 0 && mBoard.at(row - 2).at(column - 2).getPieceVal() == currentPiece) {
@@ -168,11 +163,13 @@ bool Board::checkDiagonal1(int column, int row) {
 }
 
 bool Board::checkDiagonal2(int column, int row) {
+	//Same ideas as notes describe in checkHorizontal, but for diagonally up-left and down-right
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
+	//Check up-left
 	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
 		right++;
 		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
@@ -182,6 +179,7 @@ bool Board::checkDiagonal2(int column, int row) {
 			}
 		}
 	}
+	//Check down-right
 	if (column + 1 < Board::NUM_COLS && row - 1 >= 0 && mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column + 2 < Board::NUM_COLS && row - 2 >= 0 && mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {

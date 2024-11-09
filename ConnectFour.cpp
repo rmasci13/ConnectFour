@@ -8,8 +8,8 @@ using namespace std;
 
 int main()
 {
-    Game myGame;
-    myGame.playGame();
+    Game myGame; //Establish game object
+    myGame.playGame(); //Calls function initiating and handling game
 
 }
 
