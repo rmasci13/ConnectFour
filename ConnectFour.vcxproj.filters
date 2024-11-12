@@ -48,5 +48,7 @@
     <Text Include="Testing\HorizontalRedWin.txt" />
     <Text Include="Testing\Diagonal1BlackWin.txt" />
     <Text Include="Testing\Diagonal2RedWin.txt" />
+    <Text Include="Text.txt" />
+    <Text Include="InvalidInputs.txt" />
   </ItemGroup>
 </Project>

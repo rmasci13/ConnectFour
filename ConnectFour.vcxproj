@@ -138,6 +138,7 @@
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="InvalidInputs.txt" />
     <Text Include="Testing\Diagonal1BlackWin.txt" />
     <Text Include="Testing\Diagonal2RedWin.txt" />
     <Text Include="Testing\FillBoard.txt" />
@@ -146,6 +147,7 @@
     <Text Include="Testing\VerticalBlackWin.txt" />
     <Text Include="Testing\TestInvalidInput.txt" />
     <Text Include="Testing\TryOverflowColumn.txt" />
+    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
