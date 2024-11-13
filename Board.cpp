@@ -21,14 +21,14 @@ void Board::render() {
 	cout << "|-------------------------------------------------------|" << endl;
 }
 
-void Board::changeChecker(int column) {
-	static char val = 'B'; //Initialize to B as black goes first. Static so doesn't re-initialize every call
-	int row = findRowPosition(column); //Find lowest open space in column
-	mBoard.at(row).at(column).setPieceVal(val);
-	val = val == 'B' ? 'R' : 'B'; //Change to opposite piece after placed
+void Board::placeCheckerPiece(int column) {
+	static char pieceColor = 'B'; //Initialize to B as black goes first. Static so doesn't re-initialize every call. Will alternate at end with ternary
+	int row = lowestOpenRow(column); //Find lowest open space in column
+	mBoard.at(row).at(column).setPieceVal(pieceColor);
+	pieceColor = pieceColor == 'B' ? 'R' : 'B';
 }
 
-int Board::findRowPosition(int column) {
+int Board::lowestOpenRow(int column) {
 	//Another function already handled checking if the column is full. If it was full, this function wouldn't have even been called as user reprompted for input.
 	for (int i = NUM_ROWS - 1; i >= 0; i--) {
 		if (mBoard.at(i).at(column).getPieceVal() == ' ') {
@@ -40,7 +40,7 @@ int Board::findRowPosition(int column) {
 
 bool Board::checkAvailableSpace(int column) {
 	//Used in Game to ensure column has an open space. Returns true if top space is still blank
-	return mBoard.at(0).at(column).getPieceVal() == ' ' ? true : false;
+	return mBoard.at(0).at(column).getPieceVal() == ' ';
 }
 
 bool Board::checkBoardFull() {
@@ -55,7 +55,7 @@ bool Board::checkBoardFull() {
 
 bool Board::checkWin(int column, int row) {
 	//Check if any of the win checks returns true
-	return (checkHorizontal(column, row) || checkVertical(column, row) || checkDiagonal1(column, row) || checkDiagonal2(column, row));
+	return (checkHorizontal(column, row) || checkVertical(column, row) || checkDiagonalNE_SW(column, row) || checkDiagonalNW_SE(column, row));
 }
 
 bool Board::checkHorizontal(int column, int row) {
@@ -127,14 +127,14 @@ bool Board::checkVertical(int column, int row) {
 	return false;
 }
 
-bool Board::checkDiagonal1(int column, int row) {
+bool Board::checkDiagonalNE_SW(int column, int row) {
 	//Same ideas as notes describe in checkHorizontal, but for diagonally up-right and down-left
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//Check up-right
+	//Check north-east
 	if (column + 1 > Board::NUM_COLS && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
 		if (column + 2 > Board::NUM_COLS && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
@@ -144,7 +144,7 @@ bool Board::checkDiagonal1(int column, int row) {
 			}
 		}
 	}
-	//Check down-left
+	//Check south-west
 	if (column - 1 >= 0 && row - 1 >= 0 && mBoard.at(row - 1).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column - 2 >= 0 && row - 2 >= 0 && mBoard.at(row - 2).at(column - 2).getPieceVal() == currentPiece) {
@@ -162,14 +162,14 @@ bool Board::checkDiagonal1(int column, int row) {
 	return false;
 }
 
-bool Board::checkDiagonal2(int column, int row) {
+bool Board::checkDiagonalNW_SE(int column, int row) {
 	//Same ideas as notes describe in checkHorizontal, but for diagonally up-left and down-right
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//Check up-left
+	//Check north-west
 	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
 		right++;
 		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
@@ -179,7 +179,7 @@ bool Board::checkDiagonal2(int column, int row) {
 			}
 		}
 	}
-	//Check down-right
+	//Check south-east
 	if (column + 1 < Board::NUM_COLS && row - 1 >= 0 && mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column + 2 < Board::NUM_COLS && row - 2 >= 0 && mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {

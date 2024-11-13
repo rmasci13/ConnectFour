@@ -5,39 +5,31 @@
 using namespace std;
 
 void Game::playGame() {
-	bool gameOver = false;
-	while (!gameOver) {
-		static bool blackTurn = true; //Initialized to black true because black moves first
+	while (true) {
+		static bool blackTurn = true; //Used to know which color wins. Alternates after move completed without win
 		char input = Game::getUserInput();
 		if (input == 'q') {
-			gameOver = true;
 			break;
 		}
 		else {
+			//Place piece and draw board
 			int column = input - '1'; //convert the char column entered into int index number 
-			int row = myBoard.findRowPosition(column);
-			myBoard.changeChecker(column);
+			int row = myBoard.lowestOpenRow(column);
+			myBoard.placeCheckerPiece(column);
 			myBoard.render();
 
 			//Check if the board is full resulting in draw
 			if (myBoard.checkBoardFull()) {
-				gameOver = true;
 				cout << "The board is full. The game is a draw." << endl;
 				break;
 			}
 
 			//Check if piece played resulted in a win
 			if (myBoard.checkWin(column, row)) {
-				gameOver = true;
-				if (blackTurn) {
-					cout << "CONGRATULATIONS!! Black WINS!!" << endl;
-				}
-				else {
-					cout << "CONGRATULATIONS!! Red WINS!!" << endl;
-				}
+				blackTurn ? cout << "CONGRATULATIONS!! Black WINS!!" << endl : cout << "CONGRATULATIONS!! Red WINS!!" << endl;
 				break;
 			}
-			blackTurn = !blackTurn; //Alternates after turn is over to track which color is moving during current turn
+			blackTurn = !blackTurn;
 		}
 	}
 }
@@ -62,7 +54,7 @@ char Game::getUserInput() {
 			return input;
 		}
 		//Check if not valid column (not 1-7)
-		if (input < '1' || input > '7') {
+		else if (input < '1' || input > '7') {
 			cout << "Invalid column entered. Try again" << endl;
 		}
 		else {
