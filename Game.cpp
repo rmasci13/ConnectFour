@@ -61,7 +61,7 @@ char Game::getUserInput() {
 		if (input == 'q') {
 			return input;
 		}
-		//Check if valid column (1-7)
+		//Check if not valid column (not 1-7)
 		if (input < '1' || input > '7') {
 			cout << "Invalid column entered. Try again" << endl;
 		}

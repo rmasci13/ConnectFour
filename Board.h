@@ -11,7 +11,7 @@ public:
 	//Constructor to establish the 2D vector
 	Board() : mBoard(Board::NUM_ROWS, vector<Checker>(Board::NUM_COLS)) {};
 
-	void render(); //draw the board
+	void render(); //Draw the board
 	void changeChecker(int column); //Place piece
 	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int findRowPosition(int column); //Find how deep the piece needs to fall

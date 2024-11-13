@@ -23,8 +23,8 @@ void Board::render() {
 
 void Board::changeChecker(int column) {
 	static char val = 'B'; //Initialize to B as black goes first. Static so doesn't re-initialize every call
-	int row = findRowPosition(column); //Find first open space in column
-	mBoard.at(row).at(column).setPieceVal(val); //Set value for checker at specific location
+	int row = findRowPosition(column); //Find lowest open space in column
+	mBoard.at(row).at(column).setPieceVal(val);
 	val = val == 'B' ? 'R' : 'B'; //Change to opposite piece after placed
 }
 
@@ -45,9 +45,9 @@ bool Board::checkAvailableSpace(int column) {
 
 bool Board::checkBoardFull() {
 	for (int i = 0; i < Board::NUM_COLS; i++) {
-		//Kick out if any column has an available space. 
-		if (checkAvailableSpace(i)) { //This function returns true if top piece in column is blank
-			return false; //Getting here means there's an open space somewhere, therefore board not full
+		//Kick out if any column has an available space. If get through all columns without available space board is full
+		if (checkAvailableSpace(i)) { 
+			return false; 
 		}
 	}
 	return true;
@@ -63,7 +63,7 @@ bool Board::checkHorizontal(int column, int row) {
 	int right = 0;
 	int total = 1;
 
-	char currentPiece = mBoard.at(row).at(column).getPieceVal(); //Value of the most recently placed checker
+	char currentPiece = mBoard.at(row).at(column).getPieceVal();
 
 	//First expression makes sure not checking past vector bounds, second checks if adjacent checker same as placed
 	if (column + 1 < Board::NUM_COLS && mBoard.at(row).at(column + 1).getPieceVal() == currentPiece) {
