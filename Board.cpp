@@ -161,21 +161,21 @@ bool Board::checkDiagonalNW_SE(int column, int row) {
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
 	//Check north-west
 	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
-		right++;
+		left++;
 		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
-			right++;
+			left++;
 			if (column - 3 >= 0 && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column - 3).getPieceVal() == currentPiece) {
-				right++;
+				left++;
 			}
 		}
 	}
 	//Check south-east
 	if (column + 1 < Board::NUM_COLS && row - 1 >= 0 && mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
-		left++;
+		right++;
 		if (column + 2 < Board::NUM_COLS && row - 2 >= 0 && mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {
-			left++;
+			right++;
 			if (column + 3 < Board::NUM_COLS && row - 3 >= 0 && mBoard.at(row - 3).at(column + 3).getPieceVal() == currentPiece) {
-				left++;
+				right++;
 			}
 		}
 	}
