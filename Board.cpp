@@ -97,31 +97,20 @@ bool Board::checkHorizontal(int column, int row) {
 
 bool Board::checkVertical(int column, int row) {
 	//Same ideas as notes describe in checkHorizontal, but for verticals
-	int left = 0;
-	int right = 0;
+	int down = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column).getPieceVal() == currentPiece) {
-		right++;
-		if (row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column).getPieceVal() == currentPiece) {
-			right++;
-			if (row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column).getPieceVal() == currentPiece) {
-				right++;
-			}
-		}
-	}
 	if (row - 1 >= 0 && mBoard.at(row - 1).at(column).getPieceVal() == currentPiece) {
-		left++;
+		down++;
 		if (row - 2 >= 0 && mBoard.at(row - 2).at(column).getPieceVal() == currentPiece) {
-			left++;
+			down++;
 			if (row - 3 >= 0 && mBoard.at(row - 3).at(column).getPieceVal() == currentPiece) {
-				left++;
+				down++;
 			}
 		}
 	}
-	total += right;
-	total += left;
+	total += down;
 	if (total >= 4) {
 		return true;
 	}

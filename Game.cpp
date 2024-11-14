@@ -18,17 +18,18 @@ void Game::playGame() {
 			myBoard.placeCheckerPiece(column);
 			myBoard.render();
 
-			//Check if the board is full resulting in draw
-			if (myBoard.checkBoardFull()) {
-				cout << "The board is full. The game is a draw." << endl;
-				break;
-			}
-
 			//Check if piece played resulted in a win
 			if (myBoard.checkWin(column, row)) {
 				blackTurn ? cout << "CONGRATULATIONS!! Black WINS!!" << endl : cout << "CONGRATULATIONS!! Red WINS!!" << endl;
 				break;
 			}
+
+			//Check if the board is full resulting in draw. Must be after check win because last piece can be a winning move
+			if (myBoard.checkBoardFull()) {
+				cout << "The board is full. The game is a draw." << endl;
+				break;
+			}
+
 			blackTurn = !blackTurn;
 		}
 	}
