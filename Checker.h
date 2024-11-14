@@ -9,9 +9,12 @@ private:
 	char pieceVal;
 
 public:
-	char getPieceVal(); //Piece value getter
-	void setPieceVal(char val); //Piece value setter
-	void render(); //Checker piece drawer
 	Checker() : pieceVal(' ') {}; //Constructor sets default piece to blank space
+
+	//Getter & Setter for piece color
+	char getPieceVal();
+	void setPieceVal(char val); 
+
+	void render(); //Checker piece drawer
 };
 

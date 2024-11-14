@@ -10,7 +10,6 @@ int main()
 {
     Game myGame;
     myGame.playGame();
-
 }
 
 

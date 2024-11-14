@@ -16,7 +16,6 @@ public:
 	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int lowestOpenRow(int column); //Find how deep the piece needs to fall
 	bool checkBoardFull(); //Check to see if board is full resulting in draw
-
 	bool checkWin(int column, int row); //Handles checking each of the 4 win conditions
 
 
