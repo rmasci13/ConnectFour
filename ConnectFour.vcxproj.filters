@@ -50,5 +50,11 @@
     <Text Include="Testing\DiagonalNW_SERedWin.txt" />
     <Text Include="Text.txt" />
     <Text Include="InvalidInputs.txt" />
+    <Text Include="Testing\TopLeftHorizontalRedWin.txt" />
+    <Text Include="Testing\TopLeftNW_SERedWin.txt" />
+    <Text Include="Testing\TopRowVerticalBlackWin.txt" />
+    <Text Include="Testing\NWSE_LastPieceMiddle.txt" />
+    <Text Include="Testing\NESW_LastPieceMiddle.txt" />
+    <Text Include="Testing\Horizontal_LastPieceMiddle.txt" />
   </ItemGroup>
 </Project>

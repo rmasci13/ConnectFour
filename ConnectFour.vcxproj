@@ -144,6 +144,12 @@
     <Text Include="Testing\FillBoard.txt" />
     <Text Include="Testing\FillBottomRow.txt" />
     <Text Include="Testing\HorizontalRedWin.txt" />
+    <Text Include="Testing\Horizontal_LastPieceMiddle.txt" />
+    <Text Include="Testing\NESW_LastPieceMiddle.txt" />
+    <Text Include="Testing\NWSE_LastPieceMiddle.txt" />
+    <Text Include="Testing\TopLeftHorizontalRedWin.txt" />
+    <Text Include="Testing\TopLeftNW_SERedWin.txt" />
+    <Text Include="Testing\TopRowVerticalBlackWin.txt" />
     <Text Include="Testing\VerticalBlackWin.txt" />
     <Text Include="Testing\TestInvalidInput.txt" />
     <Text Include="Testing\TryOverflowColumn.txt" />

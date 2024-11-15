@@ -101,11 +101,11 @@ bool Board::checkVertical(int column, int row) {
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	if (row - 1 >= 0 && mBoard.at(row - 1).at(column).getPieceVal() == currentPiece) {
+	if (row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column).getPieceVal() == currentPiece) {
 		down++;
-		if (row - 2 >= 0 && mBoard.at(row - 2).at(column).getPieceVal() == currentPiece) {
+		if (row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column).getPieceVal() == currentPiece) {
 			down++;
-			if (row - 3 >= 0 && mBoard.at(row - 3).at(column).getPieceVal() == currentPiece) {
+			if (row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column).getPieceVal() == currentPiece) {
 				down++;
 			}
 		}
@@ -117,30 +117,30 @@ bool Board::checkVertical(int column, int row) {
 	return false;
 }
 
-bool Board::checkDiagonalNE_SW(int column, int row) {
+bool Board::checkDiagonalNW_SE(int column, int row) {
 	//Same ideas as notes describe in checkHorizontal, but for diagonally up-right and down-left
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//Check north-east
-	if (column + 1 > Board::NUM_COLS && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
-		right++;
-		if (column + 2 > Board::NUM_COLS && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
-			right++;
-			if (column + 3 > Board::NUM_COLS && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column + 3).getPieceVal() == currentPiece) {
-				right++;
-			}
-		}
-	}
-	//Check south-west
+	//Check north-west
 	if (column - 1 >= 0 && row - 1 >= 0 && mBoard.at(row - 1).at(column - 1).getPieceVal() == currentPiece) {
 		left++;
 		if (column - 2 >= 0 && row - 2 >= 0 && mBoard.at(row - 2).at(column - 2).getPieceVal() == currentPiece) {
 			left++;
 			if (column - 3 >= 0 && row - 3 >= 0 && mBoard.at(row - 3).at(column - 3).getPieceVal() == currentPiece) {
 				left++;
+			}
+		}
+	}
+	//Check south-east
+	if (column + 1 < Board::NUM_COLS && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column + 1).getPieceVal() == currentPiece) {
+		right++;
+		if (column + 2 < Board::NUM_COLS && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column + 2).getPieceVal() == currentPiece) {
+			right++;
+			if (column + 3 < Board::NUM_COLS && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column + 3).getPieceVal() == currentPiece) {
+				right++;
 			}
 		}
 	}
@@ -152,30 +152,30 @@ bool Board::checkDiagonalNE_SW(int column, int row) {
 	return false;
 }
 
-bool Board::checkDiagonalNW_SE(int column, int row) {
+bool Board::checkDiagonalNE_SW(int column, int row) {
 	//Same ideas as notes describe in checkHorizontal, but for diagonally up-left and down-right
 	int left = 0;
 	int right = 0;
 	int total = 1;
 
 	char currentPiece = mBoard.at(row).at(column).getPieceVal();
-	//Check north-west
-	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
-		left++;
-		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
-			left++;
-			if (column - 3 >= 0 && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column - 3).getPieceVal() == currentPiece) {
-				left++;
-			}
-		}
-	}
-	//Check south-east
+	//Check north-east
 	if (column + 1 < Board::NUM_COLS && row - 1 >= 0 && mBoard.at(row - 1).at(column + 1).getPieceVal() == currentPiece) {
 		right++;
 		if (column + 2 < Board::NUM_COLS && row - 2 >= 0 && mBoard.at(row - 2).at(column + 2).getPieceVal() == currentPiece) {
 			right++;
 			if (column + 3 < Board::NUM_COLS && row - 3 >= 0 && mBoard.at(row - 3).at(column + 3).getPieceVal() == currentPiece) {
 				right++;
+			}
+		}
+	}
+	//Check south-west
+	if (column - 1 >= 0 && row + 1 < Board::NUM_ROWS && mBoard.at(row + 1).at(column - 1).getPieceVal() == currentPiece) {
+		left++;
+		if (column - 2 >= 0 && row + 2 < Board::NUM_ROWS && mBoard.at(row + 2).at(column - 2).getPieceVal() == currentPiece) {
+			left++;
+			if (column - 3 >= 0 && row + 3 < Board::NUM_ROWS && mBoard.at(row + 3).at(column - 3).getPieceVal() == currentPiece) {
+				left++;
 			}
 		}
 	}
