@@ -6,7 +6,6 @@ using namespace std;
 
 void Game::playGame() {
 	while (true) {
-		static bool blackTurn = true; //Used to know which color wins. Alternates after move completed without win
 		char input = Game::getUserInput();
 		if (input == 'q') {
 			break;
