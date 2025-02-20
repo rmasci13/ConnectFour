@@ -8,6 +8,7 @@ public:
 	void playGame(); //Handles running the game
 private:
 	Board myBoard;
+	const int WIN_CONDITION = 4; //Number of pieces in a row needed to win
 
 	char getUserInput(); //Handles getting user input ensuring its valid input and calls board function to ensure column has open space
 

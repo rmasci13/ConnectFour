@@ -85,12 +85,11 @@ bool Game::checkWin(int column, int row) {
 }
 
 bool Game::checkDirection(int column, int row, int changeRow, int changeCol) {
-	int winCondition = 4; //4 in a row to win
 	int count = 1; //Start at 1 as the piece just played counts as 1
 	char pieceColor = myBoard.getPieceVal(row, column); //Get the piece color of the piece just played
 
 	//Check in the positive direction
-	for (int i = 1; i < winCondition; i++) {
+	for (int i = 1; i < Game::WIN_CONDITION; i++) {
 		int newRow = row + (changeRow * i);
 		int newCol = column + (changeCol * i);
 		if (newRow >= 0 && newRow < myBoard.getNumRows() && newCol >= 0 && newCol < myBoard.getNumCols()) {
@@ -104,7 +103,7 @@ bool Game::checkDirection(int column, int row, int changeRow, int changeCol) {
 	}
 
 	//Check in the negative direction
-	for (int i = 1; i < winCondition; i++) {
+	for (int i = 1; i < Game::WIN_CONDITION; i++) {
 		int newRow = row - (changeRow * i);
 		int newCol = column - (changeCol * i);
 		if (newRow >= 0 && newRow < myBoard.getNumRows() && newCol >= 0 && newCol < myBoard.getNumCols()) {
@@ -117,5 +116,5 @@ bool Game::checkDirection(int column, int row, int changeRow, int changeCol) {
 		}
 	}
 	//If count is 4 or more, return true
-	return count >= winCondition;
+	return count >= Game::WIN_CONDITION;
 }
