@@ -19,7 +19,7 @@ void Game::playGame() {
 			myBoard.render();
 
 			//Check if piece played resulted in a win
-			if (myBoard.checkWin(column, row)) {
+			if (checkWin(column, row)) {
 				blackTurn ? cout << "CONGRATULATIONS!! Black WINS!!" << endl : cout << "CONGRATULATIONS!! Red WINS!!" << endl;
 				break;
 			}
@@ -72,3 +72,50 @@ char Game::getUserInput() {
 	}
 }
 
+bool Game::checkWin(int column, int row) {
+	vector<pair<int, int>> directions = { {0,1}, {1,0}, {1,1}, {1,-1} }; //4 directions to check for win
+	for (auto& direction : directions) {
+		int changeRow = direction.first;
+		int changeCol = direction.second;
+		if (checkDirection(column, row, changeRow, changeCol)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Game::checkDirection(int column, int row, int changeRow, int changeCol) {
+	int winCondition = 4; //4 in a row to win
+	int count = 1; //Start at 1 as the piece just played counts as 1
+	char pieceColor = myBoard.getPieceVal(row, column); //Get the piece color of the piece just played
+
+	//Check in the positive direction
+	for (int i = 1; i < winCondition; i++) {
+		int newRow = row + (changeRow * i);
+		int newCol = column + (changeCol * i);
+		if (newRow >= 0 && newRow < myBoard.getNumRows() && newCol >= 0 && newCol < myBoard.getNumCols()) {
+			if (myBoard.getPieceVal(newRow, newCol) == pieceColor) {
+				count++;
+			}
+			else {
+				break;
+			}
+		}
+	}
+
+	//Check in the negative direction
+	for (int i = 1; i < winCondition; i++) {
+		int newRow = row - (changeRow * i);
+		int newCol = column - (changeCol * i);
+		if (newRow >= 0 && newRow < myBoard.getNumRows() && newCol >= 0 && newCol < myBoard.getNumCols()) {
+			if (myBoard.getPieceVal(newRow, newCol) == pieceColor) {
+				count++;
+			}
+			else {
+				break;
+			}
+		}
+	}
+	//If count is 4 or more, return true
+	return count >= winCondition;
+}

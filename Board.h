@@ -16,7 +16,9 @@ public:
 	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int lowestOpenRow(int column); //Find how deep the piece needs to fall
 	bool checkBoardFull(); //Check to see if board is full resulting in draw
-	bool checkWin(int column, int row); //Handles checking each of the 4 win conditions
+	char getPieceVal(int row, int column); //Get the piece value at a specific location
+	int getNumRows() { return NUM_ROWS; } //Get number of rows in the board
+	int getNumCols() { return NUM_COLS; } //Get number of columns in the board
 
 
 private:
@@ -25,12 +27,5 @@ private:
 	const int NUM_ROWS = 6;
 	
 	vector<vector<Checker>> mBoard; //2D vector of checker pieces
-
-	//Private variables to check specific win conditions
-	bool checkHorizontal(int column, int row);
-	bool checkVertical(int column, int row);
-	bool checkDiagonalNE_SW(int column, int row);
-	bool checkDiagonalNW_SE(int column, int row);
-	
 };
 
