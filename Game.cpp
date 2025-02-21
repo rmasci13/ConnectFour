@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//Begins the game loop. Calls getUserInput to get input from user and checks if valid. If valid, places piece and checks for win or draw
 void Game::playGame() {
 	while (true) {
 		char input = Game::getUserInput();
@@ -35,6 +36,7 @@ void Game::playGame() {
 	}
 }
 
+//Handles getting user input ensuring its valid input and calls board function to ensure column has open space
 char Game::getUserInput() {
 	char input;
 	static bool blackTurn = true;
@@ -72,6 +74,7 @@ char Game::getUserInput() {
 	}
 }
 
+//Checks if the last piece placed resulted in a win. Returns true if win
 bool Game::checkWin(int column, int row) {
 	vector<pair<int, int>> directions = { {0,1}, {1,0}, {1,1}, {1,-1} }; //4 directions to check for win
 	for (auto& direction : directions) {
@@ -84,6 +87,7 @@ bool Game::checkWin(int column, int row) {
 	return false;
 }
 
+//Checks a specific direction for a win. Returns true if win in that direction
 bool Game::checkDirection(int column, int row, int changeRow, int changeCol) {
 	int count = 1; //Start at 1 as the piece just played counts as 1
 	char pieceColor = myBoard.getPieceVal(row, column); //Get the piece color of the piece just played

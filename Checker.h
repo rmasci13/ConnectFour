@@ -4,9 +4,6 @@ using namespace std;
 
 class Checker
 {
-private:
-	char pieceVal;
-
 public:
 	Checker() : pieceVal(' ') {}; //Constructor sets default piece to blank space
 
@@ -15,5 +12,8 @@ public:
 	void setPieceVal(char val); 
 
 	void render(); //Checker piece drawer
+
+private:
+	char pieceVal; //Piece value. Only R or B allowed
 };
 
