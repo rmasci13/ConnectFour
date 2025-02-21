@@ -21,12 +21,10 @@ void Board::render() {
 	cout << "|-------------------------------------------------------|" << endl;
 }
 
-void Board::placeCheckerPiece(int column) {
-	static bool blackTurn = true; //Initialize to true as black goes first. Static so doesn't re-initialize every call. Alternate at end
+void Board::placeCheckerPiece(int column, bool blackTurn) {
 	char pieceColor = blackTurn ? 'B' : 'R';
 	int row = lowestOpenRow(column); //Find lowest open space in column
 	mBoard.at(row).at(column).setPieceVal(pieceColor);
-	blackTurn = !blackTurn;
 }
 
 int Board::lowestOpenRow(int column) {

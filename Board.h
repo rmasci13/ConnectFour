@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include "Checker.h"
 
@@ -12,7 +11,7 @@ public:
 	Board() : mBoard(Board::NUM_ROWS, vector<Checker>(Board::NUM_COLS)) {};
 
 	void render(); //Draw the board
-	void placeCheckerPiece(int column); //Place piece
+	void placeCheckerPiece(int column, bool blackTurn); //Place piece
 	bool checkAvailableSpace(int column); //Ensure the column has an open spot
 	int lowestOpenRow(int column); //Find how deep the piece needs to fall
 	bool checkBoardFull(); //Check to see if board is full resulting in draw

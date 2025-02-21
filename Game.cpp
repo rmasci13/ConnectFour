@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Board.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ void Game::playGame() {
 			//Place piece and draw board
 			int column = input - '1'; //convert the char column entered into int index number 
 			int row = myBoard.lowestOpenRow(column);
-			myBoard.placeCheckerPiece(column);
+			myBoard.placeCheckerPiece(column, blackTurn);
 			myBoard.render();
 
 			//Check if piece played resulted in a win
