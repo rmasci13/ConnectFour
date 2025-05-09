@@ -16,29 +16,6 @@ This C++ application simulates the Connect Four game where two players take turn
 - Win detection in all directions (horizontal, vertical, and diagonal)
 - Draw detection when the board is full
 
-## Requirements
-
-- C++ compiler (C++11 or higher recommended)
-- Standard C++ libraries
-
-## Installation
-
-1. Clone this repository or download the source code
-2. Navigate to the project directory
-3. Compile the code using your preferred C++ compiler:
-
-```bash
-g++ -o connect_four ConnectFour.cpp Game.cpp Board.cpp Checker.cpp -std=c++11
-```
-
-## Usage
-
-Run the compiled executable:
-
-```bash
-./connect_four
-```
-
 ### Game Controls
 
 - Enter a column number (1-7) to drop a disc into that column
@@ -88,18 +65,3 @@ The game checks for wins in four directions after each move:
 4. Diagonal ascending (↗)
 
 The algorithm counts consecutive pieces of the same color in both directions along each line to determine if four or more are connected.
-
-## Future Enhancements
-
-Potential features for future versions:
-- AI opponent with difficulty levels
-- Graphical user interface
-- Game state saving/loading
-- Player statistics tracking
-- Network multiplayer support
-- Customizable board dimensions
-
-
-## Acknowledgments
-
-This project was created as a programming exercise to demonstrate object-oriented programming concepts in C++.
