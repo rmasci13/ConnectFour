@@ -30,7 +30,7 @@ This C++ application simulates the Connect Four game where two players take turn
 
 ## File Structure
 
-- **main.cpp**: Program entry point
+- **ConnectFour.cpp**: Program entry point
 - **Game.h/cpp**: Handles game logic, player turns, and win conditions
 - **Board.h/cpp**: Manages the game board and piece placement
 - **Checker.h/cpp**: Represents individual game pieces
@@ -51,7 +51,7 @@ This C++ application simulates the Connect Four game where two players take turn
 - Renders the board to the console
 - Provides utility functions for checking available spaces
 
-### CheckerPiece Class
+### Checker Class
 
 - Represents an individual game piece (Black, Red, or empty)
 - Handles piece rendering and state
